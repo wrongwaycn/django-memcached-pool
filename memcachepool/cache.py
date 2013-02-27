@@ -8,6 +8,7 @@ import socket
 import time
 
 from django.core.cache.backends.memcached import MemcachedCache
+#from django.core.cache.backends.memcached import PyLibMCCache as MemcachedCache
 from memcachepool.pool import ClientPool
 
 

@@ -14,6 +14,7 @@ _RETRY = ('set', 'get', 'gets', 'get_multi', 'gets_multi',
 _ERRORS = (IOError, RuntimeError, MemcachedError, socket.error)
 
 
+
 class Client(object):
     """On connection errors, tries to reconnect
     """
