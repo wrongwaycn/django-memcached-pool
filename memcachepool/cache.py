@@ -45,14 +45,14 @@ class UMemcacheCache(MemcachedCache):
         while retries < self.retries:
             with self._pool.reserve() as conn:
                 try:
-                    print("------------------------")
-                    print(conn)
-                    print(func)
-                    print(args)
-                    print(kwargs)
+                    #print("------------------------")
+                    #print(conn)
+                    #print(func)
+                    #print(args)
+                    #print(kwargs)
                     return getattr(conn, func)(*args, **kwargs)
                 except Exception, exc:
-                    print(exc)
+                    #print(exc)
                     # log
                     retries += 1
         raise exc
