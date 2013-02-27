@@ -8,7 +8,7 @@ import socket
 import time
 
 from django.core.cache.backends.memcached import MemcachedCache
-#from django.core.cache.backends.memcached import PyLibMCCache as MemcachedCache
+#from django.core.cache.backends.memcached import PyLibMCCache as MemcachedCache 
 from memcachepool.pool import ClientPool
 
 
@@ -45,8 +45,14 @@ class UMemcacheCache(MemcachedCache):
         while retries < self.retries:
             with self._pool.reserve() as conn:
                 try:
+                    print("------------------------")
+                    print(conn)
+                    print(func)
+                    print(args)
+                    print(kwargs)
                     return getattr(conn, func)(*args, **kwargs)
                 except Exception, exc:
+                    print(exc)
                     # log
                     retries += 1
         raise exc
@@ -144,7 +150,7 @@ class UMemcacheCache(MemcachedCache):
 
         key = self.make_key(key, version=version)
 
-        return self.call('add', value, self._get_memcache_timeout(timeout),
+        return self.call('add',key, value, self._get_memcache_timeout(timeout),
                          flag)
 
     def get(self, key, default=None, version=None):
